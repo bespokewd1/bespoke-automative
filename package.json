@@ -12,12 +12,17 @@
 		"remove-demo": "node scripts/remove-demo.js"
 	},
 	"dependencies": {
+		"@astrojs/react": "^4.4.2",
 		"@astrojs/sitemap": "^3.6.0",
 		"@tailwindcss/vite": "^4.1.18",
+		"@types/react": "^19.2.7",
+		"@types/react-dom": "^19.2.3",
 		"astro": "^5.16.3",
 		"astro-icon": "^1.1.5",
 		"autoprefixer": "^10.4.22",
 		"less": "^4.4.2",
+		"react": "^19.2.3",
+		"react-dom": "^19.2.3",
 		"tailwindcss": "^4.1.18"
 	},
 	"devDependencies": {
