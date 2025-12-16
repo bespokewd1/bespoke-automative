@@ -1,2 +1,20 @@
 @import "tailwindcss" important;
 
+@theme {
+  --color-bg: oklch(1 0 0);
+  --color-bg-muted: oklch(0.98 0.01 240);
+
+  --color-fg: oklch(0.22 0.03 240);
+  --color-fg-muted: oklch(0.52 0.02 240);
+
+  --color-border: oklch(0.9 0.01 240);
+
+  /* Brand tokens */
+  --color-primary: oklch(0.41 0.08 235);
+  --color-primary-700: oklch(0.33 0.08 235);
+
+  --color-accent: oklch(0.68 0.18 52);
+  --color-accent-700: oklch(0.6 0.18 52);
+
+  --ring-color: oklch(0.78 0.12 52);
+}
