@@ -27,6 +27,7 @@
 		"tailwindcss": "^4.1.18"
 	},
 	"devDependencies": {
+		"@iconify-json/tabler": "^1.2.24",
 		"netlify-plugin-cache": "^1.0.3",
 		"prettier": "3.7.4",
 		"prettier-plugin-astro": "0.14.1",

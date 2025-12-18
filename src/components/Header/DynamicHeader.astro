@@ -26,7 +26,7 @@ import navData from "@data/navData.json";
 ---
 
 <header id="cs-navigation">
-  <div class="cs-container">
+  <div class="cs-container justify-center">
     <!--Nav Logo-->
     <a
       href="/"
@@ -61,6 +61,7 @@ import navData from "@data/navData.json";
               <li
                 class:list={[
                   "cs-li",
+                  "group",
                   { "cs-dropdown": entry.children?.length > 0 },
                 ]}
               >
@@ -71,12 +72,15 @@ import navData from "@data/navData.json";
                     aria-expanded="false"
                     aria-haspopup="menu"
                     class:list={[
-                      "cs-li-link cs-dropdown-toggle",
+                      "cs-li-link cs-dropdown-toggle ease transition-colors duration-250 group-hover:text-accent before:content-none",
                       { "cs-active": Astro.url.pathname.includes(entry.url) },
                     ]}
                   >
                     {entry.key}
-                    <Icon name="mdi--caret" class="cs-drop-icon" />
+                    <Icon
+                      name="mdi--caret"
+                      class="cs-drop-icon origin-center -scale-y-100 transition-transform duration-400 ease-in-out group-hover:scale-y-100"
+                    />
                   </button>
                 ) : (
                   // If entry does not have children in navData.json, create an anchor
@@ -84,6 +88,7 @@ import navData from "@data/navData.json";
                     href={entry.url}
                     class:list={[
                       "cs-li-link",
+                      "ease transition-colors duration-300 group-hover:text-accent before:content-none",
                       { "cs-active": Astro.url.pathname === entry.url },
                     ]}
                     aria-current={isCurrentPage(Astro.url.pathname, entry.url)}
@@ -132,7 +137,13 @@ import navData from "@data/navData.json";
         </ul>
       </div>
     </nav>
-    <a href="/contact/" class="cs-button-solid cs-nav-button">Contact Us</a>
+    <a
+      href="/contact/"
+      class:list={[
+        "relative z-1 ml-auto inline-block h-12.5 bg-transparent px-7.5 py-0 text-center leading-[3.125em] font-bold text-fg uppercase transition-colors",
+        "before:absolute before:inset-0 before:size-full before:bg-accent before:[clip-path:polygon(0_14px,14px_0,100%_0,100%_calc(100%-14px),calc(100%-14px)_100%,0_100%,0_14px,2px_14.8px,2px_calc(100%-2px),calc(100%-14px-0.8px)_calc(100%-2px),calc(100%-2px)_calc(100%-14px-0.8px),calc(100%-2px)_2px,14.8px_2px,2px_14.8px)]",
+      ]}>Contact Us</a
+    >
     <!--Dark Mode toggle: remove component if you don't want to enable a dark mode toggle-->
     <!-- <DarkModeToggle /> -->
   </div>
@@ -477,9 +488,9 @@ import navData from "@data/navData.json";
             opacity: 1;
           }
 
-          .cs-drop-icon {
+          /*.cs-drop-icon {
             transform: rotate(0);
-          }
+          }*/
         }
 
         .cs-li-link {
@@ -568,11 +579,11 @@ import navData from "@data/navData.json";
       .cs-dropdown:has(.cs-drop-icon) {
         display: flex;
         align-items: center;
-        &:hover {
+        /*&:hover {
           .cs-drop-icon {
             transform: rotate(0);
           }
-        }
+        }*/
       }
 
       .cs-drop-icon {
@@ -580,8 +591,8 @@ import navData from "@data/navData.json";
         height: auto;
         display: inline-block;
         color: inherit;
-        transform: rotate(180deg);
-        transition: 0.3s;
+        /*transform: rotate(180deg);*/
+        /*transition: 0.3s;*/
       }
 
       .cs-drop-ul {
