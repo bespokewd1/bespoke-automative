@@ -15,6 +15,7 @@
 import { Icon } from "astro-icon/components";
 import { isCurrentPage, getDropdownId } from "@js/utils.js";
 import { Image } from "astro:assets";
+import CTALink from "@components/CTALink.astro";
 
 import mainLogo from "@assets/images/main-logo.png";
 
@@ -137,13 +138,7 @@ import navData from "@data/navData.json";
         </ul>
       </div>
     </nav>
-    <a
-      href="/contact/"
-      class:list={[
-        "relative z-1 ml-auto inline-block h-12.5 bg-transparent px-7.5 py-0 text-center leading-[3.125em] font-bold text-fg uppercase transition-colors",
-        "before:absolute before:inset-0 before:size-full before:bg-accent before:[clip-path:polygon(0_14px,14px_0,100%_0,100%_calc(100%-14px),calc(100%-14px)_100%,0_100%,0_14px,2px_14.8px,2px_calc(100%-2px),calc(100%-14px-0.8px)_calc(100%-2px),calc(100%-2px)_calc(100%-14px-0.8px),calc(100%-2px)_2px,14.8px_2px,2px_14.8px)]",
-      ]}>Contact Us</a
-    >
+    <CTALink />
     <!--Dark Mode toggle: remove component if you don't want to enable a dark mode toggle-->
     <!-- <DarkModeToggle /> -->
   </div>

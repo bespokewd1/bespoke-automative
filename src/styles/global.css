@@ -17,4 +17,37 @@
   --color-accent-700: oklch(0.6 0.18 52);
 
   --ring-color: oklch(0.78 0.12 52);
+  --animate-move-to-left: move-to-left 30s infinite linear;
+  --animate-move-to-right: move-to-right 30s infinite linear;
+  --animate-move-to-top: move-to-top 30s infinite linear;
+}
+
+@keyframes move-to-top {
+  from {
+    transform: translateY(0);
+  }
+
+  to {
+    transform: translateY(-100%);
+  }
+}
+
+@keyframes move-to-left {
+  from {
+    translate: 0;
+  }
+
+  to {
+    translate: -100%;
+  }
+}
+
+@keyframes move-to-right {
+  from {
+    translate: 0;
+  }
+
+  to {
+    translate: 100%;
+  }
 }
