@@ -1,4 +1,5 @@
 ---
+import { Icon } from "astro-icon/components";
 interface Props {
   label?: string;
 }
@@ -9,20 +10,24 @@ const { label = "Contact Us" } = Astro.props;
 <a
   href="/contact/"
   class:list={[
-    "relative z-1 ml-auto inline-block h-12.5 bg-transparent px-7.5 py-0 text-center leading-[3.125em] font-bold text-fg uppercase transition-colors",
+    "group relative z-1 ml-auto hidden h-12.5 bg-transparent px-2 py-0 text-center leading-[3.125em] font-bold text-fg uppercase transition-colors lg:inline-block",
     "before:absolute before:inset-0 before:size-full before:bg-accent before:[clip-path:polygon(0_14px,14px_0,100%_0,100%_calc(100%-14px),calc(100%-14px)_100%,0_100%,0_14px,2px_14.8px,2px_calc(100%-2px),calc(100%-14px-0.8px)_calc(100%-2px),calc(100%-2px)_calc(100%-14px-0.8px),calc(100%-2px)_2px,14.8px_2px,2px_14.8px)]",
+    "group w-43",
   ]}
-  data-label={label}
 >
   <span
-    class:list={[
-      "relative mx-auto flex w-full items-center justify-end overflow-hidden",
-      "after:content-[attr(data-label)]",
-    ]}
-    data-label={label}
+    class:list={["relative mx-auto flex items-center gap-0 overflow-hidden"]}
   >
-    <span class="animate-move-to-left">
-      {label}
-    </span>
+    {
+      [...Array(2)].map((_, i) => (
+        <span
+          class="font-strong inline-flex w-fit flex-[0_0_100%] animate-move-to-left items-center justify-center gap-2 group-hover:[animation-play-state:paused] group-focus-visible:[animation-play-state:paused]"
+          aria-hidden={i === 1}
+        >
+          <Icon name="tabler:calendar-plus" class="size-[1.2em]" />
+          Book Service
+        </span>
+      ))
+    }
   </span>
 </a>

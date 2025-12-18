@@ -4,8 +4,10 @@
   --color-bg: oklch(1 0 0);
   --color-bg-muted: oklch(0.98 0.01 240);
 
-  --color-fg: oklch(0.22 0.03 240);
-  --color-fg-muted: oklch(0.52 0.02 240);
+  /*--color-fg: oklch(0.22 0.03 240);*/
+  --color-fg: oklch(0.4 0.11 250.17);
+  --color-fg-muted: oklch(0.7 0.12 250.17);
+  /*--color-fg-muted: oklch(0.52 0.02 240);*/
 
   --color-border: oklch(0.9 0.01 240);
 
@@ -17,7 +19,7 @@
   --color-accent-700: oklch(0.6 0.18 52);
 
   --ring-color: oklch(0.78 0.12 52);
-  --animate-move-to-left: move-to-left 30s infinite linear;
+  --animate-move-to-left: move-to-left 5s infinite linear;
   --animate-move-to-right: move-to-right 30s infinite linear;
   --animate-move-to-top: move-to-top 30s infinite linear;
 }

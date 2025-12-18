@@ -73,7 +73,7 @@ import navData from "@data/navData.json";
                     aria-expanded="false"
                     aria-haspopup="menu"
                     class:list={[
-                      "cs-li-link cs-dropdown-toggle ease transition-colors duration-250 group-hover:text-accent before:content-none",
+                      "cs-li-link cs-dropdown-toggle ease font-semibold text-fg uppercase transition-colors duration-250 group-hover:text-accent before:content-none",
                       { "cs-active": Astro.url.pathname.includes(entry.url) },
                     ]}
                   >
@@ -89,7 +89,7 @@ import navData from "@data/navData.json";
                     href={entry.url}
                     class:list={[
                       "cs-li-link",
-                      "ease transition-colors duration-300 group-hover:text-accent before:content-none",
+                      "ease font-semibold text-fg uppercase transition-colors duration-300 group-hover:text-accent before:content-none",
                       { "cs-active": Astro.url.pathname === entry.url },
                     ]}
                     aria-current={isCurrentPage(Astro.url.pathname, entry.url)}
@@ -105,10 +105,10 @@ import navData from "@data/navData.json";
                     aria-labelledby={getDropdownId(entry.key)}
                   >
                     {entry.children.map((child) => (
-                      <li class="cs-drop-li">
+                      <li class="cs-drop-li group">
                         <a
                           href={child.url}
-                          class="cs-li-link cs-drop-link"
+                          class="cs-li-link cs-drop-link font-semibold text-fg uppercase transition-colors duration-300 group-hover:text-accent"
                           aria-current={isCurrentPage(
                             Astro.url.pathname,
                             child.url,
@@ -123,22 +123,24 @@ import navData from "@data/navData.json";
               </li>
             ))
           }
-          <li class="cs-li cs-hide-on-desktop">
+          <li class="cs-li cs-hide-on-desktop group text-fg">
             <a
               href="/contact/"
               class:list={[
-                "cs-li-link",
+                "cs-li-link font-semibold uppercase transition-colors duration-300 group-hover:text-accent",
                 { "cs-active": Astro.url.pathname === "/contact/" },
               ]}
               aria-current={isCurrentPage(Astro.url.pathname, "/contact/")}
             >
               Contact
             </a>
+
+            <!-- <CTALink label="Book Service" /> -->
           </li>
         </ul>
       </div>
     </nav>
-    <CTALink />
+    <CTALink label="Book Service" />
     <!--Dark Mode toggle: remove component if you don't want to enable a dark mode toggle-->
     <!-- <DarkModeToggle /> -->
   </div>
