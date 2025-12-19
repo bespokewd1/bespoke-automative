@@ -4,28 +4,48 @@ interface Props {
   label?: string;
 }
 
-const { label = "Contact Us" } = Astro.props;
+const { label = "Book Service" } = Astro.props;
+
+// We define the solid shape here to reuse it
+const solidPath =
+  "polygon(0 14px, 14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%)";
+// This is your original "hollow" border path
+const borderPath =
+  "polygon(0 14px, 14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px, 2px 14.8px, 2px calc(100% - 2px), calc(100% - 14px - 0.8px) calc(100% - 2px), calc(100% - 2px) calc(100% - 14px - 0.8px), calc(100% - 2px) 2px, 14.8px 2px, 2px 14.8px)";
 ---
 
 <a
   href="/contact/"
+  style={`clip-path: ${solidPath};`}
   class:list={[
-    "group relative z-1 ml-auto hidden h-12.5 bg-transparent px-2 py-0 text-center leading-[3.125em] font-bold text-fg uppercase transition-colors lg:inline-block",
-    "before:absolute before:inset-0 before:size-full before:bg-accent before:[clip-path:polygon(0_14px,14px_0,100%_0,100%_calc(100%-14px),calc(100%-14px)_100%,0_100%,0_14px,2px_14.8px,2px_calc(100%-2px),calc(100%-14px-0.8px)_calc(100%-2px),calc(100%-2px)_calc(100%-14px-0.8px),calc(100%-2px)_2px,14.8px_2px,2px_14.8px)]",
-    "group w-43",
+    "group relative z-1 ml-auto hidden h-12.5 bg-transparent px-2 py-0 text-center leading-[3.125em] font-bold text-fg uppercase transition-colors duration-300 ease-in lg:inline-block",
+    "hover:bg-accent",
+    "w-43",
   ]}
 >
+  {/* The Border Layer */}
   <span
-    class:list={["relative mx-auto flex items-center gap-0 overflow-hidden"]}
+    style={`clip-path: ${borderPath};`}
+    class="absolute inset-0 z-10 block bg-accent transition-colors duration-300 group-hover:bg-transparent"
+    aria-hidden="true"></span>
+
+  {/* The Content Layer */}
+  <span
+    class:list={[
+      "relative z-20 mx-auto flex items-center gap-0 overflow-hidden",
+    ]}
   >
     {
       [...Array(2)].map((_, i) => (
         <span
-          class="font-strong inline-flex w-fit flex-[0_0_100%] animate-move-to-left items-center justify-center gap-2 group-hover:[animation-play-state:paused] group-focus-visible:[animation-play-state:paused]"
+          class="font-strong inline-flex w-fit flex-[0_0_100%] animate-move-to-left items-center justify-center gap-2 group-hover:text-bg group-hover:[animation-play-state:paused] group-focus-visible:[animation-play-state:paused]"
           aria-hidden={i === 1}
         >
-          <Icon name="tabler:calendar-plus" class="size-[1.2em]" />
-          Book Service
+          <Icon
+            name="tabler:calendar-plus"
+            class="size-[1.2em] group-hover:text-bg"
+          />
+          {label}
         </span>
       ))
     }

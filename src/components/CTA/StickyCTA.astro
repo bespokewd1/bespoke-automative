@@ -1,0 +1,73 @@
+---
+import { Icon } from "astro-icon/components";
+import { BUSINESS } from "@data/client.ts";
+import CTALink from "@components/CTALink.astro";
+---
+
+<aside
+  id="sticky-cta"
+  class="fixed bottom-0 left-0 z-50 w-full transition-transform duration-300 data-[hidden='true']:pointer-events-none data-[hidden='true']:translate-y-full lg:hidden"
+  data-sticky-cta
+>
+  <!-- Main Container: Added shadow and background to ensure visibility -->
+  <div
+    class="mx-auto flex w-full max-w-3xl items-stretch border-t border-neutral-200 bg-white shadow-[0_-4px_20px_rgba(0,0,0,0.1)]"
+  >
+    <!-- Phone Link Section -->
+    <div class="flex flex-1 items-center justify-center bg-amber-50">
+      <a
+        href={`tel:${BUSINESS.phoneForTel}`}
+        class="flex h-full w-full items-center justify-center gap-2 px-2 py-4 text-[clamp(14px,4dvw,18px)] font-black text-fg transition-colors hover:text-amber-600"
+      >
+        <Icon name={"tabler:phone"} class="size-5 shrink-0" />
+        <span class="whitespace-nowrap">{BUSINESS.phoneFormatted}</span>
+      </a>
+    </div>
+
+    <!-- CTA Link Section -->
+    <div class="flex flex-1 items-stretch">
+      <a
+        href="/contact"
+        class="flex h-full w-full items-center justify-center gap-2 bg-accent px-2 py-4 text-[clamp(14px,4dvw,18px)] font-black text-bg transition-colors hover:text-fg"
+      >
+        <Icon
+          name="tabler:calendar-plus"
+          class="size-[1.2em] group-hover:text-bg"
+        />
+        Book Service
+      </a>
+    </div>
+  </div>
+
+  <!-- Bottom Spacer for Safe Area (iOS/Modern Android) -->
+  <div class="h-[env(safe-area-inset-bottom)] w-full bg-white"></div>
+</aside>
+
+<script>
+  (() => {
+    const cta = document.getElementById("sticky-cta");
+    if (!cta) return;
+
+    const hero = document.getElementById("hero");
+    if (!hero) return;
+
+    const setHidden = (hidden) => {
+      cta.setAttribute("data-hidden", hidden ? "true" : "false");
+    };
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setHidden(entry.isIntersecting);
+      },
+      {
+        threshold: 0.1,
+      },
+    );
+
+    observer.observe(hero);
+
+    document.addEventListener("astro:after-swap", () => {
+      // Re-run logic for view transitions if needed
+    });
+  })();
+</script>

@@ -11,6 +11,7 @@ import DynamicHeader from "@components/Header/DynamicHeader.astro";
 import Footer from "@components/Footer/Footer.astro";
 import Meta from "@components/Meta/Meta.astro";
 import CursorDot from "@components/React/CursorDot.tsx";
+import StickyCTA from "@components/CTA/StickyCTA.astro";
 
 // Data
 import { SITE } from "@data/client";
@@ -52,10 +53,12 @@ const { description, title, heroImage } = Astro.props as Props;
     <CursorDot client:load />
 
     <DynamicHeader />
-    <main id="main">
+    <main class="relative" id="main">
       <slot />
     </main>
     <Footer />
+
+    <StickyCTA />
   </body>
 </html>
 
