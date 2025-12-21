@@ -1,0 +1,87 @@
+---
+interface Props {
+    message1?: string;
+    message2?: string;
+    message3?: string;
+    ctaText?: string;
+    ctaLink?: string;
+}
+
+const {
+    message1 = "Enjoy 10% Off Parts & 5% Off Labor on Your First Vehicle Service",
+    message2 = "Promo Code: TENFIVE",
+    message3 = "Terms: First-time service only, standard maintenance, until Dec 30, 2025, cannot combine with other offers",
+    ctaText = "Book Now",
+    ctaLink = "/booking"
+} = Astro.props;
+---
+
+<div class="banner-cta">
+    <div class="banner-cta__content">
+        <h2 class="cs-title">{message1}</h2>
+        <h2 class="cs-title">{message2}</h2>
+        <p class="cs-text">{message3}</p>
+    </div>
+    <a href={ctaLink} class="cs-button-solid">{ctaText}</a>
+</div>
+
+<style lang="less">
+    .banner-cta {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 3rem 2rem;
+        background-color: var(--primary);
+        color: white;
+        flex-direction: column;
+    }
+
+    .banner-cta__content {
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+        width: 100%;
+        text-align: center;
+        .cs-title, .cs-text{
+            color: #fff;
+        }
+    }
+
+    .cs-button-solid {
+        background-color: var(--secondary);
+        color: #fff;
+        white-space: nowrap;
+
+        &:hover {
+            color: var(--primary);
+        }
+
+        &::before {
+            background-color: #fff;
+        }
+    }
+
+    @media (min-width: 768px) {
+        .banner-cta {
+            flex-direction: row;
+            align-items: center;
+            padding: 1.5rem 16rem;
+            gap: 1.5rem;
+        }
+
+        .banner-cta__content {
+            flex-direction: column;
+            gap: 0;
+            align-items: flex-start;
+            justify-content: center;
+            text-align: left;
+            flex: 1;
+            .cs-title {
+                text-align: left;
+                margin: 0;
+                margin-bottom: 0.75rem;
+            }
+        }
+    }
+</style>

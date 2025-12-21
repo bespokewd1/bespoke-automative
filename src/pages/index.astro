@@ -5,7 +5,9 @@ import { getImage } from "astro:assets";
 // Components
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Hero from "@components/Hero/Hero.astro";
+import BannerCTA from "@components/Banner/Banner-CTA.astro";
 import Services from "@components/Services/Services.astro";
+import ServicesOverview from "@components/Services/Services-Overview.astro";
 import SideBySide from "@components/SideBySide/SideBySide.astro";
 import SideBySideReverse from "@components/SideBySideReverse/SideBySideReverse.astro";
 import Gallery from "@components/Gallery/Gallery.astro";
@@ -14,7 +16,7 @@ import FAQ from "@components/FAQ/FAQ.astro";
 import CTASimple from "@components/CTA/CTASimple.astro";
 
 // Optimize our landing image and pass it as props to the BaseLayout (for preloading) and Banner (for rendering)
-import heroImage from "@assets/images/hero/hero.jpg";
+import heroImage from "@assets/images/hero/hero-bg.jpg";
 const optimizedHeroImage = await getImage({ src: heroImage, format: "webp" });
 ---
 
@@ -26,6 +28,16 @@ const optimizedHeroImage = await getImage({ src: heroImage, format: "webp" });
   <Hero image={optimizedHeroImage} />
 
   <Services />
+
+  <BannerCTA
+    message1="Enjoy 10% Off Parts & 5% Off Labor on Your First Vehicle Service"
+    message2="Promo Code: TENFIVE"
+    message3="Terms: First-time service only, standard maintenance, until Dec 30, 2025, cannot combine with other offers"
+    ctaText="Book Now"
+    ctaLink="/contact"
+  />
+
+  <ServicesOverview />
 
   <SideBySide />
 
