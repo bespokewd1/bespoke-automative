@@ -1,5 +1,40 @@
 @import "tailwindcss" important;
 
+@layer components {
+  .prose-service {
+    @apply text-fg-muted;
+  }
+
+  .prose-service h2 {
+    @apply text-2xl font-bold uppercase mt-12 mb-6 text-fg;
+  }
+
+  .prose-service h3 {
+    @apply text-xl font-bold mt-8 mb-4 text-fg;
+  }
+
+  .prose-service p {
+    @apply mb-4 leading-relaxed;
+  }
+
+  .prose-service ul {
+    @apply my-4 space-y-2;
+  }
+
+  .prose-service li {
+    @apply pl-6 relative;
+  }
+
+  .prose-service li::before {
+    content: "";
+    @apply absolute left-0 top-[0.6em] w-2 h-2 bg-accent;
+  }
+
+  .prose-service strong {
+    @apply text-fg font-semibold;
+  }
+}
+
 @theme {
   --color-bg: oklch(1 0 0);
   --color-bg-muted: oklch(0.98 0.01 240);
@@ -22,7 +57,9 @@
   --animate-move-to-left: move-to-left 5s infinite linear;
   --animate-move-to-right: move-to-right 30s infinite linear;
   --animate-move-to-top: move-to-top 30s infinite linear;
+
 }
+
 
 @keyframes move-to-top {
   from {
