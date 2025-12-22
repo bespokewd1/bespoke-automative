@@ -1,4 +1,4 @@
-import { motion } from "motion/react";
+import { motion, type Variants } from "motion/react";
 
 interface ServiceFeaturesProps {
   features: string[];
@@ -9,7 +9,7 @@ export function ServiceFeatures({
   features,
   title = "Services Included",
 }: ServiceFeaturesProps) {
-  const container = {
+  const container: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -19,7 +19,7 @@ export function ServiceFeatures({
     },
   };
 
-  const item = {
+  const item: Variants = {
     hidden: { opacity: 0, x: -20 },
     visible: {
       opacity: 1,
@@ -56,7 +56,7 @@ export function ServiceFeatures({
             variants={item}
             className="flex items-center gap-3"
           >
-            <span className="flex-shrink-0 w-2 h-2 bg-accent" />
+            <span className="shrink-0 size-2 bg-accent" />
             <span className="text-fg">{feature}</span>
           </motion.li>
         ))}

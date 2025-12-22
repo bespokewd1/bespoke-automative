@@ -28,7 +28,7 @@ export function HeroSection({
       {/* Background text watermark */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
         {/* BESPOKE */}
-        <TextGenerateEffect className="text-[20vw] font-bold text-primary/5 uppercase whitespace-nowrap" words="BESPOKE" duration={1} filter={false} />
+        <TextGenerateEffect className="text-[20vw] font-bold text-primary/5 uppercase whitespace-nowrap" words="BESPOKE" duration={2} filter={false} />
       </div>
 
       <div className="container mx-auto px-4 py-16">
@@ -46,14 +46,8 @@ export function HeroSection({
             <TextGenerateEffect
               words={headline}
               className="text-4xl md:text-5xl lg:text-6xl font-bold uppercase leading-tight mb-2"
-              duration={2}
+              duration={1.5}
             />
-
-            {/* <SplitTextReveal */}
-            {/*   text={headline} */}
-            {/*   className="text-4xl md:text-5xl lg:text-6xl font-bold uppercase leading-tight mb-2" */}
-            {/*   delay={0.3} */}
-            {/* /> */}
 
             <SplitTextReveal
               text={subheadline}

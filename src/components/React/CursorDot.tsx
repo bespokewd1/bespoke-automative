@@ -37,7 +37,7 @@ export default function CursorDot() {
         translateX: "-50%",
         translateY: "-50%",
       }}
-      className="pointer-events-none fixed top-0 left-0 z-99999 bg-accent"
+      className="pointer-events-none pointer-coarse:hidden fixed top-0 left-0 z-99999 bg-accent"
     />
   );
 }
