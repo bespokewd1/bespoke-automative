@@ -29,6 +29,9 @@
       ],
       "@js/*": [
         "src/js/*"
+      ],
+      "@lib/*": [
+        "src/lib/*"
       ]
     },
     "incremental": true,

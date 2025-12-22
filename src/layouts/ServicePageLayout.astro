@@ -1,0 +1,202 @@
+---
+import Layout from "./BaseLayout.astro";
+import { HeroSection } from "@components/services/HeroSection";
+import { ServiceFeatures } from "@components/services/ServiceFeatures";
+import { BeforeAfterSlider } from "@components/services/BeforeAfterSlider";
+import { RecentWorksGallery } from "@components/services/RecentWorksGallery";
+import { OtherServices } from "@components/services/OtherServices";
+import { VideoSection } from "@components/services/VideoSection";
+import { RelatedArticles } from "@components/services/RelatedArticles";
+import { SEOContent } from "@components/services/SEOContent";
+import { stats, getOtherServices, type ServiceData } from "@data/services";
+
+interface Props {
+  service: ServiceData;
+}
+
+const { service } = Astro.props;
+
+const otherServices = getOtherServices(service.slug).map((s) => ({
+  title: s.shortTitle,
+  description: s.description,
+  icon: s.icon,
+  href: `/services/${s.slug}/`,
+}));
+
+// Sample recent works data - replace with actual data
+const recentWorks = [
+  {
+    title: "Engine Repair",
+    image: "/images/works/engine-repair.jpg",
+    href: `/services/${service.slug}/`,
+  },
+  {
+    title: "Interior Detailing",
+    image: "/images/works/interior.jpg",
+    href: `/services/${service.slug}/`,
+  },
+  {
+    title: "Transmission Service",
+    image: "/images/works/transmission.jpg",
+    href: `/services/${service.slug}/`,
+  },
+  {
+    title: "Oil Change",
+    image: "/images/works/oil-change.jpg",
+    href: `/services/${service.slug}/`,
+  },
+];
+
+// Sample articles data - replace with actual data
+const relatedArticles = [
+  {
+    title: "Signs Your Car Battery Has to Be Replaced",
+    excerpt:
+      "Learn the warning signs that indicate your battery needs attention.",
+    image: "/images/articles/battery.jpg",
+    category: "Car Advice",
+    date: "December 15, 2025",
+    href: "/blog/battery-replacement-signs/",
+  },
+  {
+    title: "How to Protect the Interior of Your Car",
+    excerpt: "Tips for maintaining your vehicle's interior.",
+    image: "/images/articles/interior.jpg",
+    category: "Car Advice",
+    date: "December 10, 2025",
+    href: "/blog/protect-interior/",
+  },
+  {
+    title: "Is Your Car's Check Engine Light Flashing?",
+    excerpt: "What to do when your check engine light comes on.",
+    image: "/images/articles/check-engine.jpg",
+    category: "Car Advice",
+    date: "December 5, 2025",
+    href: "/blog/check-engine-light/",
+  },
+  {
+    title: "5 Must-Have Things in Your Car for Safety",
+    excerpt: "Essential items every driver should keep in their vehicle.",
+    image: "/images/articles/safety.jpg",
+    category: "Car Advice",
+    date: "December 1, 2025",
+    href: "/blog/car-safety-essentials/",
+  },
+];
+---
+
+<Layout title={service.metaTitle} description={service.metaDescription}>
+  {/* Hero Section */}
+  <HeroSection
+    client:load
+    headline={service.heroHeadline}
+    subheadline={service.heroSubheadline}
+    description={service.description}
+    carImageUrl={service.heroImg.src}
+    stats={stats}
+  />
+
+  {/* Services Included */}
+  <section class="bg-bg py-16">
+    <div class="container mx-auto px-4">
+      <ServiceFeatures client:visible features={service.features} />
+    </div>
+  </section>
+
+  {/* Before/After Slider OR Recent Works Gallery */}
+  {
+    service.hasBeforeAfter ? (
+      <section class="bg-bg-muted py-16">
+        <div class="container mx-auto px-4">
+          <h2 class="mb-8 text-3xl font-bold uppercase lg:text-4xl">
+            Our Results
+          </h2>
+          <BeforeAfterSlider
+            client:visible
+            beforeImage={service.beforeImg.src}
+            afterImage={service.afterImg.src}
+            beforeLabel="Before"
+            afterLabel="After"
+          />
+        </div>
+      </section>
+    ) : (
+      <RecentWorksGallery client:visible items={recentWorks} />
+    )
+  }
+
+  {/* Video Section */}
+  <VideoSection
+    client:visible
+    title="Maintenance & Repairs"
+    thumbnailUrl="/images/video-thumbnail.jpg"
+  />
+
+  {/* SEO Content */}
+  <section class="bg-bg py-16">
+    <div class="container mx-auto px-4">
+      <SEOContent client:visible content={service.seoContent} />
+    </div>
+  </section>
+
+  {/* Service Areas Banner */}
+  <section class="bg-primary py-12 text-white">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="mb-4 text-2xl font-bold uppercase lg:text-3xl">
+        Proudly Serving the Greater Edmonton Area
+      </h2>
+      <p class="text-lg text-white/80">
+        {service.locations.join(" • ")}
+      </p>
+    </div>
+  </section>
+
+  {/* Other Services */}
+  <OtherServices client:visible services={otherServices} />
+
+  {/* Related Articles */}
+  <RelatedArticles client:visible articles={relatedArticles} />
+
+  {/* Final CTA */}
+  <section class="bg-bg-muted py-20">
+    <div class="container mx-auto px-4 text-center">
+      <h2 class="mb-6 text-3xl font-bold uppercase lg:text-4xl">
+        Ready to Get Started?
+      </h2>
+      <p class="mx-auto mb-8 max-w-2xl text-lg text-fg-muted">
+        Contact Bespoke Auto Repair today to schedule your {
+          service.shortTitle.toLowerCase()
+        } service. We're here to keep you safely on the road.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a
+          href="/contact/"
+          class="inline-flex items-center justify-center bg-accent px-8 py-4 font-bold tracking-wider text-white uppercase transition-colors hover:bg-accent-700"
+          style="clip-path: polygon(0 10px, 10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);"
+        >
+          Book Service Online
+        </a>
+        <a
+          href="tel:+17801234567"
+          class="inline-flex items-center gap-2 border-2 border-primary px-8 py-4 font-bold tracking-wider text-primary uppercase transition-colors hover:bg-primary hover:text-white"
+          style="clip-path: polygon(0 10px, 10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%);"
+        >
+          <svg
+            class="h-5 w-5"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              stroke-width="2"
+              d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
+            ></path>
+          </svg>
+          (780) 123-4567
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
