@@ -1,4 +1,4 @@
-@import "tailwindcss" important;
+@import "tailwindcss" ;
 
 @theme {
   --color-bg: oklch(1 0 0);

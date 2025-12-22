@@ -1,8 +1,8 @@
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { SplitTextReveal } from "./SplitTextReveal";
 import { CountUpStats } from "./CountUpStats";
 import { DiagonalFillButton } from "./DiagonalFillButton";
-import { TextGenerateEffect } from "@components/ui/text-generate-effect";
+import { TextGenerateEffect } from "@components/ui/TextGenerateEffect";
 
 interface HeroSectionProps {
   headline: string;
@@ -28,7 +28,7 @@ export function HeroSection({
       {/* Background text watermark */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
         {/* BESPOKE */}
-        <TextGenerateEffect className="text-[20vw] font-bold text-primary/5 uppercase whitespace-nowrap" words="BESPOKE" duration={2} filter={false} />
+        <TextGenerateEffect className="text-[20vw] font-bold text-primary/5 uppercase whitespace-nowrap" words="BESPOKE" duration={1} filter={false} />
       </div>
 
       <div className="container mx-auto px-4 py-16">

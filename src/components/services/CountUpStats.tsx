@@ -1,4 +1,4 @@
-import { motion, useInView, useSpring, useTransform } from "framer-motion";
+import { motion, useInView, useSpring, useTransform } from "motion/react";
 import { useEffect, useRef } from "react";
 
 interface StatItem {

@@ -1,5 +1,5 @@
 // src/components/services/OtherServices.tsx
-import { motion } from "framer-motion";
+import { motion } from "motion/react";
 import { RollingTextLinkAlt } from "./RollingTextLink";
 
 interface Service {
