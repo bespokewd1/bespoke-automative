@@ -5,6 +5,7 @@ import { Picture, getImage } from "astro:assets";
 // Components
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Banner from "@components/Banner/Banner.astro";
+import Contact from "@components/Form/Contact.astro";
 
 // Data
 import { BUSINESS } from "@data/client";
@@ -18,62 +19,8 @@ const optimizedImage = await getImage({ src: landingImage, format: "webp" });
 <BaseLayout title="Contact" description="Meta description for the page" heroImage={optimizedImage}>
 	<Banner title="Contact" image={optimizedImage} />
 
-	<section id="cs-contact">
-		<div class="cs-container">
-			<form id="cs-form" name="Contact Form" method="post">
-				<div class="cs-content">
-					<span class="cs-topper">Contact</span>
-					<h2 class="cs-title">Get in Touch</h2>
-					<p class="cs-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ridiculus elementum ullamcorper ipsum porttitor aliquam. Id magna urna ultrices odio pulvinar. Sed ut.</p>
-				</div>
-				<label>
-					Name
-					<input required type="text" id="name" name="name" placeholder="Name" />
-				</label>
-				<label>
-					Email
-					<input required type="text" id="email" name="email" placeholder="Email" />
-				</label>
-				<label>
-					Phone
-					<input required type="text" id="phone" name="phone" placeholder="Phone" />
-				</label>
-				<label>
-					How Did You Find Us
-					<input type="text" id="find" name="find-us" placeholder="How did you find us?" />
-				</label>
-				<label class="cs-label-message">
-					Message
-					<textarea required name="Message" id="message" placeholder="Write message..."></textarea>
-				</label>
-				<button class="cs-button-solid" type="submit">Submit Message</button>
-			</form>
-			<div class="cs-right-section">
-				<!--Email-->
-				<span class="cs-header">Email</span>
-				<a class="cs-link" href={`mailto:${BUSINESS.email}`}>{BUSINESS.email}</a>
-				<!--Phone-->
-				<span class="cs-header">Phone</span>
-				<a class="cs-link" href={`tel:${BUSINESS.phoneForTel}`}>{BUSINESS.phoneFormatted}</a>
-				<!--Address-->
-				<span class="cs-header">Address</span>
-				<a class="cs-link" href={BUSINESS.address.mapLink}>
-					{BUSINESS.address.lineOne},
-					<br />
-					{BUSINESS.address.lineTwo},
-					<br />
-					<span class="cs-block">
-						{BUSINESS.address.city}
-						{BUSINESS.address.state}
-						{BUSINESS.address.zip}
-					</span>
-				</a>
+	<Contact />
 
-				<!-- Background Image-->
-				<Picture src={skyscraperImage} alt="building" width={2500} height={1667} formats={["avif", "webp"]} pictureAttributes={{ class: "cs-bg-picture" }} />
-			</div>
-		</div>
-	</section>
 </BaseLayout>
 
 <style lang="less">

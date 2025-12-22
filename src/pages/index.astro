@@ -14,6 +14,7 @@ import Gallery from "@components/Gallery/Gallery.astro";
 import Testimonials from "@components/Testimonials/Testimonials.astro";
 import FAQ from "@components/FAQ/FAQ.astro";
 import CTASimple from "@components/CTA/CTASimple.astro";
+import Contact from "@components/Form/Contact.astro";
 
 // Optimize our landing image and pass it as props to the BaseLayout (for preloading) and Banner (for rendering)
 import heroImage from "@assets/images/hero/hero-bg.jpg";
@@ -46,4 +47,5 @@ const optimizedHeroImage = await getImage({ src: heroImage, format: "webp" });
   <Testimonials />
   <FAQ />
   <CTASimple />
+  <Contact />
 </BaseLayout>
