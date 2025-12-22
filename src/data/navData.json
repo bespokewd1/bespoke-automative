@@ -6,15 +6,35 @@
   },
   {
     "key": "Services",
-    "url": "/projects/",
+    "url": "/services/",
     "children": [
       {
-        "key": "Service 1",
-        "url": "/projects/project-1/"
+        "key": "Auto Repair",
+        "url": "/services/auto/"
       },
       {
-        "key": "Service 2",
-        "url": "/projects/project-2/"
+        "key": "Truck Repair",
+        "url": "/services/truck/"
+      },
+      {
+        "key": "Brake Service",
+        "url": "/services/brake/"
+      },
+      {
+        "key": "Engine Diagnostics",
+        "url": "/services/engine/"
+      },
+      {
+        "key": "CVIP / Out-of-Province Inspections",
+        "url": "/services/cvip/"
+      },
+      {
+        "key": "Trailer / RV Repair",
+        "url": "/services/trailer/"
+      },
+      {
+        "key": "Oil Change & Maintenance",
+        "url": "/services/oil/"
       }
     ]
   },
