@@ -22,13 +22,16 @@ export function DiagonalFillButton({
   const hoverBgColor =
     variant === "accent" ? "bg-accent-700" : "bg-primary-700";
 
+  const borderPath =
+    "polygon(0 14px, 14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px, 2px 14.8px, 2px calc(100% - 2px), calc(100% - 14px - 0.8px) calc(100% - 2px), calc(100% - 2px) calc(100% - 14px - 0.8px), calc(100% - 2px) 2px, 14.8px 2px, 2px 14.8px)";
+
   const buttonContent = (
     <motion.span
       className={`
         relative inline-flex items-center justify-center
         px-8 py-4 font-bold uppercase tracking-wider
         overflow-hidden cursor-pointer
-        border-2 border-accent text-fg
+        text-fg
         ${className}
       `}
       onMouseEnter={() => setIsHovered(true)}
@@ -38,6 +41,11 @@ export function DiagonalFillButton({
           "polygon(0 14px, 14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%)",
       }}
     >
+
+      <span
+        style={{ clipPath: borderPath }}
+        className="absolute inset-0 z-10 block bg-accent transition-colors duration-300 group-hover:bg-transparent"
+        aria-hidden="true"></span>
       {/* Diagonal fill background */}
       <motion.span
         className={`absolute inset-0 ${bgColor} origin-top-left`}

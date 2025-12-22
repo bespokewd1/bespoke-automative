@@ -3,6 +3,7 @@ import { SplitTextReveal } from "./SplitTextReveal";
 import { CountUpStats } from "./CountUpStats";
 import { DiagonalFillButton } from "./DiagonalFillButton";
 import { TextGenerateEffect } from "@components/ui/TextGenerateEffect";
+import { BUSINESS } from "@data/client";
 
 interface HeroSectionProps {
   headline: string;
@@ -24,14 +25,14 @@ export function HeroSection({
   stats,
 }: HeroSectionProps) {
   return (
-    <section className="relative min-h-[80vh] flex flex-col justify-center overflow-hidden">
+    <section className="relative flex flex-col justify-center overflow-hidden">
       {/* Background text watermark */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
         {/* BESPOKE */}
         <TextGenerateEffect className="text-[20vw] font-bold text-primary/5 uppercase whitespace-nowrap" words="BESPOKE" duration={2} filter={false} />
       </div>
 
-      <div className="container mx-auto px-4 py-16">
+      <div className="container mx-auto px-4 my-0 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
           <div className="relative z-10">
@@ -75,13 +76,18 @@ export function HeroSection({
               </DiagonalFillButton>
 
               <a
-                href="tel:+17801234567"
-                className="inline-flex items-center gap-2 px-6 py-4 border-2 border-primary text-primary font-bold uppercase tracking-wider hover:bg-primary hover:text-white transition-colors"
+                href={`tel:+1${BUSINESS.phoneForTel}`}
+                className="inline-flex items-center gap-2 px-6 py-4 relative text-primary font-bold uppercase tracking-wider duration-300 ease-in hover:bg-primary hover:text-white transition-colors"
                 style={{
                   clipPath:
-                    "polygon(0 10px, 10px 0, 100% 0, 100% calc(100% - 10px), calc(100% - 10px) 100%, 0 100%)",
+                    "polygon(0 14px, 14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%)",
                 }}
               >
+
+                <span
+                  style={{ clipPath: "polygon(0 14px, 14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px, 2px 14.8px, 2px calc(100% - 2px), calc(100% - 14px - 0.8px) calc(100% - 2px), calc(100% - 2px) calc(100% - 14px - 0.8px), calc(100% - 2px) 2px, 14.8px 2px, 2px 14.8px)" }}
+                  className="absolute inset-0 z-10 block bg-fg transition-colors duration-300 group-hover:bg-transparent"
+                  aria-hidden="true"></span>
                 <svg
                   className="w-5 h-5"
                   fill="none"
