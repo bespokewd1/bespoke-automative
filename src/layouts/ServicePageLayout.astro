@@ -9,6 +9,7 @@ import { VideoSection } from "@components/services/VideoSection";
 import { RelatedArticles } from "@components/services/RelatedArticles";
 import { SEOContent } from "@components/services/SEOContent";
 import { ServiceAreas } from "@components/services/ServiceAreas";
+import { FinalCTA } from "@components/services/FinalCTA";
 import TelLink from "@components/TelLink";
 import { Image } from "astro:assets";
 
@@ -132,18 +133,6 @@ const relatedArticles = [
 
   <ServiceAreas client:visible locations={service.locations} />
 
-  {/* Service Areas Banner */}
-  <!-- <section class="bg-primary py-12 text-white"> -->
-  <!--   <div class="container mx-auto px-4 text-center"> -->
-  <!--     <h2 class="mb-4 text-2xl font-bold uppercase lg:text-3xl"> -->
-  <!--       Proudly Serving the Greater Edmonton Area -->
-  <!--     </h2> -->
-  <!--     <p class="text-lg text-white/80"> -->
-  <!--       {service.locations.join(" • ")} -->
-  <!--     </p> -->
-  <!--   </div> -->
-  <!-- </section> -->
-
   {/* Other Services */}
   <OtherServices client:visible services={otherServices} />
 
@@ -151,37 +140,16 @@ const relatedArticles = [
   <RelatedArticles client:visible articles={relatedArticles} />
 
   {/* Final CTA */}
-  <section class="relative py-20">
-    <div class="container mx-auto px-4 text-center">
-      <h2
-        class="mb-6 text-3xl font-bold text-neutral-950 uppercase lg:text-4xl"
-      >
-        Ready to Get Started?
-      </h2>
-      <p class="mx-auto mb-8 max-w-2xl text-lg text-fg-muted text-neutral-800">
-        Contact Bespoke Auto Repair today to schedule your {
-          service.shortTitle.toLowerCase()
-        } service. We're here to keep you safely on the road.
-      </p>
-      <div class="flex flex-wrap justify-center gap-4">
-        <DiagonalFillButton client:visible href="/contact/">
-          Book Service Online
-        </DiagonalFillButton>
+  <FinalCTA
+    client:visible
+    title="Ready to Get Started?"
+    description={`Contact Bespoke Auto Repair today to schedule your ${service.shortTitle.toLowerCase()} service. We're here to keep you safely on the road.`}
+  >
+    {/* The Buttons */}
+    <DiagonalFillButton client:visible href="/contact/">
+      Book Service Online
+    </DiagonalFillButton>
 
-        <TelLink />
-      </div>
-    </div>
-
-    <div
-      class="absolute inset-0 -z-1 size-full backdrop-blur-[3px]"
-      style="background: radial-gradient(at center center, oklch(0.94 0.02 223.72 / 0.7) 30%, lch(100 0 0 / 0.6) 47%);"
-    >
-    </div>
-
-    <Image
-      src={vanServicing}
-      alt={"a person doing van Maintenance "}
-      class={"absolute inset-0 size-full aspect-video object-cover -z-2"}
-    />
-  </section>
+    <TelLink />
+  </FinalCTA>
 </Layout>

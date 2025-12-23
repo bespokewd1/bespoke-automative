@@ -28,9 +28,22 @@ export function HeroSection({
     <section className="relative flex flex-col justify-center overflow-hidden">
       {/* Background text watermark */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
-        <span className="text-[20vw] font-bold text-primary/5 uppercase whitespace-nowrap">
+        <motion.span
+          initial={{ opacity: 0, x: -150 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ amount: 0.1 }}
+          transition={{
+            duration: 1.5,
+            ease: [0.16, 1, 0.3, 1], // Custom cubic-bezier for a smooth "out" feel
+            delay: 0.2,
+          }}
+          className="text-[20vw] font-bold text-primary/5 uppercase whitespace-nowrap"
+        >
           BESPOKE
-        </span>
+        </motion.span>
+        {/* <span className="text-[20vw] font-bold text-primary/5 uppercase whitespace-nowrap"> */}
+        {/*   BESPOKE */}
+        {/* </span> */}
 
 
       </div>
