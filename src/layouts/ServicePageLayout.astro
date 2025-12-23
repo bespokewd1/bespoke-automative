@@ -107,15 +107,17 @@ const relatedArticles = [
           <h2 class="mb-8 text-3xl font-bold uppercase lg:text-4xl">
             Our Results
           </h2>
-          {service.beforeAfterImgs.map((items) => (
-            <BeforeAfterSlider
-              client:visible
-              beforeImage={items.beforeImg.src}
-              afterImage={items.afterImg.src}
-              beforeLabel="Before"
-              afterLabel="After"
-            />
-          ))}
+          <div class="flex items-center gap-5 p-3">
+            {service.beforeAfterImgs.map((items) => (
+              <BeforeAfterSlider
+                client:visible
+                beforeImage={items.beforeImg.src}
+                afterImage={items.afterImg.src}
+                beforeLabel="Before"
+                afterLabel="After"
+              />
+            ))}
+          </div>
         </div>
       </section>
     ) : (

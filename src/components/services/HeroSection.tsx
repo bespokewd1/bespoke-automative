@@ -1,9 +1,10 @@
-import { motion } from "motion/react";
+import { motion, useScroll, useTransform } from "motion/react";
 import { SplitTextReveal } from "./SplitTextReveal";
 import { CountUpStats } from "./CountUpStats";
 import { DiagonalFillButton } from "./DiagonalFillButton";
 import { TextGenerateEffect } from "@components/ui/TextGenerateEffect";
 import TelLink from "@components/TelLink";
+import { useRef } from "react";
 
 interface HeroSectionProps {
   headline: string;
@@ -24,6 +25,15 @@ export function HeroSection({
   carImageUrl,
   stats,
 }: HeroSectionProps) {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start end", "center center", "end start"],
+  });
+
+  const scale = useTransform(scrollYProgress, [0, 0.5, 1], [0.5, 1, 0.5]);
+
   return (
     <section className="relative flex flex-col justify-center overflow-hidden">
       {/* Background text watermark */}
@@ -91,8 +101,10 @@ export function HeroSection({
 
           {/* Car Image */}
           <motion.div
+            ref={containerRef}
             initial={{ opacity: 0, x: 100 }}
             animate={{ opacity: 1, x: 0 }}
+            style={{ scale }}
             transition={{ delay: 0.4, duration: 0.8, ease: "easeOut" }}
             className="relative"
           >

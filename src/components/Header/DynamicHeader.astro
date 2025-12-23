@@ -17,6 +17,7 @@ import { isCurrentPage, getDropdownId } from "@js/utils.js";
 import { Image } from "astro:assets";
 import CTALink from "@components/CTALink.astro";
 import { RollingTextLinkAlt } from "@components/services/RollingTextLink";
+import { cn } from "@lib/utils";
 
 import mainLogo from "@assets/images/main-logo.png";
 
@@ -86,37 +87,62 @@ import navData from "@data/navData.json";
                   </button>
                 ) : (
                   // If entry does not have children in navData.json, create an anchor
-                  <a
+                  // <a
+                  //   href={entry.url}
+                  //   class:list={[
+                  //     "cs-li-link",
+                  //     "ease font-semibold text-fg uppercase transition-colors duration-300 group-hover:text-accent before:content-none",
+                  //     { "cs-active": Astro.url.pathname === entry.url },
+                  //   ]}
+                  //   aria-current={isCurrentPage(Astro.url.pathname, entry.url)}
+                  // >
+                  //   {entry.key}
+                  // </a>
+                  <RollingTextLinkAlt
+                    text={entry.key}
                     href={entry.url}
-                    class:list={[
-                      "cs-li-link",
-                      "ease font-semibold text-fg uppercase transition-colors duration-300 group-hover:text-accent before:content-none",
-                      { "cs-active": Astro.url.pathname === entry.url },
-                    ]}
-                    aria-current={isCurrentPage(Astro.url.pathname, entry.url)}
-                  >
-                    {entry.key}
-                  </a>
+                    client:visible
+                    showIcon={false}
+                    textClass={cn([
+                      "text-base text-fg",
+                      { "text-accent ": Astro.url.pathname === entry.url },
+                    ])}
+                    secondTextClass="text-base"
+                  />
                 )}
 
                 {entry.children?.length > 0 && (
                   // If entry has children in navData.json, create a drop down menu
                   <ul
-                    class="cs-drop-ul"
+                    class="cs-drop-ul px-1 py-2"
                     aria-labelledby={getDropdownId(entry.key)}
                   >
                     {entry.children.map((child) => (
-                      <li class="cs-drop-li group">
-                        <a
+                      <li class="cs-drop-li group ">
+                        <RollingTextLinkAlt
+                          text={child.key}
+                          className="cs-li-link w-full hover:bg-neutral-100 cs-drop-link font-semibold text-fg uppercase p-3"
                           href={child.url}
-                          class="cs-li-link cs-drop-link font-semibold text-fg uppercase transition-colors duration-300 group-hover:text-accent"
-                          aria-current={isCurrentPage(
-                            Astro.url.pathname,
-                            child.url,
-                          )}
-                        >
-                          {child.key}
-                        </a>
+                          client:visible
+                          showIcon={false}
+                          textClass={cn([
+                            "text-base text-fg",
+                            {
+                              "text-accent": Astro.url.pathname === entry.url,
+                            },
+                          ])}
+                          secondTextClass="text-base"
+                        />
+                        <!-- <a -->
+                        <!--   href={child.url} -->
+                        <!--   class="cs-li-link cs-drop-link font-semibold text-fg uppercase transition-colors duration-300 group-hover:text-accent" -->
+                        <!--   aria-current={isCurrentPage( -->
+                        <!--     Astro.url.pathname, -->
+                        <!--     child.url, -->
+                        <!--   )} -->
+                        <!-- > -->
+                        <!--   {child.key} -->
+                        <!-- </a> -->
                       </li>
                     ))}
                   </ul>
@@ -125,16 +151,27 @@ import navData from "@data/navData.json";
             ))
           }
           <li class="cs-li cs-hide-on-desktop group text-fg">
-            <a
+            <!-- <a -->
+            <!--   href="/contact/" -->
+            <!--   class:list={[ -->
+            <!--     "cs-li-link font-semibold uppercase transition-colors duration-300 group-hover:text-accent", -->
+            <!--     { "cs-active": Astro.url.pathname === "/contact/" }, -->
+            <!--   ]} -->
+            <!--   aria-current={isCurrentPage(Astro.url.pathname, "/contact/")} -->
+            <!-- > -->
+            <!--   Contact -->
+            <!-- </a> -->
+
+            <RollingTextLinkAlt
+              text="Contact"
               href="/contact/"
-              class:list={[
-                "cs-li-link font-semibold uppercase transition-colors duration-300 group-hover:text-accent",
-                { "cs-active": Astro.url.pathname === "/contact/" },
-              ]}
-              aria-current={isCurrentPage(Astro.url.pathname, "/contact/")}
-            >
-              Contact
-            </a>
+              client:visible
+              showIcon={false}
+              textClass={cn([
+                "text-base text-fg",
+                { "text-accent ": Astro.url.pathname === "/contact/" },
+              ])}
+            />
 
             <!-- <CTALink label="Book Service" /> -->
           </li>

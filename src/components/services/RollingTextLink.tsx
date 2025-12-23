@@ -1,42 +1,51 @@
+import { cn } from "@lib/utils";
 import { motion } from "motion/react";
+import { type ComponentPropsWithoutRef } from "react";
 
-interface RollingTextLinkProps {
+interface RollingTextLinkProps extends ComponentPropsWithoutRef<"a"> {
   text: string;
   href: string;
-  className?: string;
+  showIcon?: boolean;
+  textClass?: string;
+  secondTextClass?: string;
 }
 
 export function RollingTextLink({
   text,
   href,
   className = "",
+  showIcon = true,
+  ...rest
 }: RollingTextLinkProps) {
   return (
     <a
       href={href}
-      className={`group inline-flex items-center gap-2 overflow-hidden ${className}`}
+      {...rest}
+      className={cn(`group inline-flex items-center gap-2 overflow-hidden`, className)}
     >
-      <motion.span
-        className="inline-flex items-center justify-center w-6 h-6 bg-accent text-white"
-        style={{
-          clipPath:
-            "polygon(0 4px, 4px 0, 100% 0, 100% calc(100% - 4px), calc(100% - 4px) 100%, 0 100%)",
-        }}
-      >
-        <svg
-          className="w-3 h-3"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
+      {showIcon &&
+        <motion.span
+          className="inline-flex items-center justify-center w-6 h-6 bg-accent text-white"
+          style={{
+            clipPath:
+              "polygon(0 4px, 4px 0, 100% 0, 100% calc(100% - 4px), calc(100% - 4px) 100%, 0 100%)",
+          }}
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={3}
-            d="M9 5l7 7-7 7"
-          />
-        </svg>
-      </motion.span>
+          <svg
+            className="w-3 h-3"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={3}
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
+        </motion.span>
+      }
 
       <span className="relative h-5 overflow-hidden">
         <span className="flex flex-col">
@@ -51,7 +60,7 @@ export function RollingTextLink({
           </motion.span>
           {/* Duplicate text that comes from bottom */}
           <motion.span
-            className="font-bold uppercase text-sm tracking-wider text-accent absolute top-full"
+            className={cn("font-bold uppercase text-sm tracking-wider text-accent absolute top-full")}
             initial={{ y: 0 }}
             whileHover={{ y: "-100%" }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
@@ -69,40 +78,46 @@ export function RollingTextLinkAlt({
   text,
   href,
   className = "",
+  showIcon = true,
+  textClass,
+  secondTextClass
 }: RollingTextLinkProps) {
   return (
     <motion.a
       href={href}
-      className={`group inline-flex items-center gap-2 ${className}`}
+      className={cn(`group inline-flex items-center gap-2 `, className)}
       initial="rest"
       whileHover="hover"
       animate="rest"
     >
-      <span
-        className="inline-flex items-center justify-center w-6 h-6 bg-accent text-white"
-        style={{
-          clipPath:
-            "polygon(0 4px, 4px 0, 100% 0, 100% calc(100% - 4px), calc(100% - 4px) 100%, 0 100%)",
-        }}
-      >
-        <svg
-          className="w-3 h-3"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
+      {showIcon &&
+        <span
+          className="inline-flex items-center justify-center w-6 h-6 bg-accent text-white"
+          style={{
+            clipPath:
+              "polygon(0 4px, 4px 0, 100% 0, 100% calc(100% - 4px), calc(100% - 4px) 100%, 0 100%)",
+          }}
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={3}
-            d="M9 5l7 7-7 7"
-          />
-        </svg>
-      </span>
+          <svg
+            className="w-3 h-3"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth={3}
+              d="M9 5l7 7-7 7"
+            />
+          </svg>
+        </span>
+      }
+
 
       <span className="relative h-5 overflow-hidden inline-block">
         <motion.span
-          className="block font-bold uppercase text-sm tracking-wider"
+          className={cn("block font-bold uppercase text-sm tracking-wider", textClass)}
           variants={{
             rest: { y: 0 },
             hover: { y: "-100%" },
@@ -112,7 +127,7 @@ export function RollingTextLinkAlt({
           {text}
         </motion.span>
         <motion.span
-          className="block font-bold uppercase text-sm tracking-wider text-accent absolute inset-0"
+          className={cn("block font-bold uppercase text-sm tracking-wider text-accent absolute inset-0", secondTextClass)}
           variants={{
             rest: { y: "100%" },
             hover: { y: 0 },
