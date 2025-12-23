@@ -3,7 +3,7 @@ import { SplitTextReveal } from "./SplitTextReveal";
 import { CountUpStats } from "./CountUpStats";
 import { DiagonalFillButton } from "./DiagonalFillButton";
 import { TextGenerateEffect } from "@components/ui/TextGenerateEffect";
-import { BUSINESS } from "@data/client";
+import TelLink from "@components/TelLink";
 
 interface HeroSectionProps {
   headline: string;
@@ -28,21 +28,17 @@ export function HeroSection({
     <section className="relative flex flex-col justify-center overflow-hidden">
       {/* Background text watermark */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none select-none overflow-hidden">
-        {/* BESPOKE */}
-        <TextGenerateEffect className="text-[20vw] font-bold text-primary/5 uppercase whitespace-nowrap" words="BESPOKE" duration={2} filter={false} />
+        <span className="text-[20vw] font-bold text-primary/5 uppercase whitespace-nowrap">
+          BESPOKE
+        </span>
+
+
       </div>
 
       <div className="container mx-auto px-4 my-0 py-16">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           {/* Content */}
           <div className="relative z-10">
-            {/* Orange dot accent */}
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.2, type: "spring" }}
-              className="w-3 h-3 bg-accent rounded-full mb-6"
-            />
 
             <TextGenerateEffect
               words={headline}
@@ -75,34 +71,8 @@ export function HeroSection({
                 Book Service
               </DiagonalFillButton>
 
-              <a
-                href={`tel:+1${BUSINESS.phoneForTel}`}
-                className="inline-flex items-center gap-2 px-6 py-4 relative text-primary font-bold uppercase tracking-wider duration-300 ease-in hover:bg-primary hover:text-white transition-colors"
-                style={{
-                  clipPath:
-                    "polygon(0 14px, 14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%)",
-                }}
-              >
+              <TelLink />
 
-                <span
-                  style={{ clipPath: "polygon(0 14px, 14px 0, 100% 0, 100% calc(100% - 14px), calc(100% - 14px) 100%, 0 100%, 0 14px, 2px 14.8px, 2px calc(100% - 2px), calc(100% - 14px - 0.8px) calc(100% - 2px), calc(100% - 2px) calc(100% - 14px - 0.8px), calc(100% - 2px) 2px, 14.8px 2px, 2px 14.8px)" }}
-                  className="absolute inset-0 z-10 block bg-fg transition-colors duration-300 group-hover:bg-transparent"
-                  aria-hidden="true"></span>
-                <svg
-                  className="w-5 h-5"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"
-                  />
-                </svg>
-                Call Now
-              </a>
             </motion.div>
           </div>
 

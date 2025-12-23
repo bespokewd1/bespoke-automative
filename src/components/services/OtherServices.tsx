@@ -126,13 +126,23 @@ function ServiceCard({
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.1, duration: 0.5 }}
-      className="border-t border-border pt-8"
+      // Added "relative" so the absolute border stays attached to this card
+      className="relative border-t border-border pt-8 group flex flex-col"
     >
+      {/* Growing Border Element */}
+      <div
+        className="absolute top-0 left-0 h-0.5 w-full bg-accent origin-left scale-x-0 transition-transform duration-500 ease-out group-hover:scale-x-100"
+      />
+
       <div className="text-accent mb-4">
-        <IconComponent className="w-12 h-12" />
+        <IconComponent className="w-12 h-12 group-hover:-scale-x-100 duration-400 ease-out transition-transform" />
       </div>
-      <h3 className="text-xl font-bold uppercase mb-3">{service.title}</h3>
-      <p className="text-fg-muted mb-4 line-clamp-3">{service.description}</p>
+      <h3 className="text-xl font-bold text-neutral-950 uppercase mb-3">
+        {service.title}
+      </h3>
+      <p className="text-neutral-800 mb-4 line-clamp-3 flex-1">
+        {service.description}
+      </p>
       <RollingTextLinkAlt text="Details Service" href={service.href} />
     </motion.div>
   );

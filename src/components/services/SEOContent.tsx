@@ -1,3 +1,4 @@
+import { cn } from "@lib/utils";
 import { motion } from "motion/react";
 
 interface SEOContentProps {
@@ -16,16 +17,16 @@ export function SEOContent({ content, className = "" }: SEOContentProps) {
     >
       <div
         dangerouslySetInnerHTML={{ __html: parseMarkdown(content) }}
-        className="
-          [&_h2]:text-2xl [&_h2]:font-bold [&_h2]:uppercase [&_h2]:mt-12 [&_h2]:mb-6 [&_h2]:text-fg
-          [&_h3]:text-xl [&_h3]:font-bold [&_h3]:mt-8 [&_h3]:mb-4 [&_h3]:text-fg
-          [&_p]:text-fg-muted [&_p]:mb-4 [&_p]:leading-relaxed
-          [&_ul]:my-4 [&_ul]:space-y-2
-          [&_li]:text-fg-muted [&_li]:pl-4 [&_li]:relative
-          [&_li]:before:content-[''] [&_li]:before:absolute [&_li]:before:left-0 
-          [&_li]:before:top-[0.6em] [&_li]:before:w-2 [&_li]:before:h-2 [&_li]:before:bg-accent
-          [&_strong]:text-fg [&_strong]:font-semibold
-        "
+        className={cn([
+          "[&_h2]:text-2xl [&_h2]:font-bold [&_h2]:uppercase [&_h2]:mt-12 [&_h2]:mb-6 [&_h2]:text-neutral-950",
+          "[&_h3]:text-xl [&_h3]:font-bold [&_h3]:mt-8 [&_h3]:mb-4 [&_h3]:text-neutral-950",
+          "[&_p]:text-neutral-800 [&_p]:mb-4 [&_p]:leading-relaxed",
+          "[&_ul]:my-4 [&_ul]:space-y-2",
+          "[&_li]:text-neutral-800 [&_li]:pl-4 [&_li]:relative",
+          "[&_li]:before:content-[''] [&_li]:before:absolute [&_li]:before:left-0 ",
+          "[&_li]:before:top-[0.6em] [&_li]:before:w-2 [&_li]:before:h-2 [&_li]:before:bg-accent",
+          "[&_strong]:text-fg [&_strong]:font-semibold",
+        ])}
       />
     </motion.div>
   );
@@ -53,3 +54,4 @@ function parseMarkdown(text: string): string {
     .replace(/<p><\/p>/g, "")
     .replace(/<p>\s*<\/p>/g, "");
 }
+

@@ -1,7 +1,13 @@
 import xrayCar from "@assets/images/services/car.png"
 import car from "@assets/images/services/car-full.png"
+import breakSystem from "@assets/images/services/break-system.webp"
+import breakLine from "@assets/images/services/break-line.webp"
+import absModule from "@assets/images/services/abs-module.webp"
+import vanServicing from "@assets/images/services/van-servicing.webp"
 
-type ImageData = {
+
+
+export type ImageData = {
   src: string;
   height: number;
   width: number
@@ -26,18 +32,29 @@ interface BaseServiceData {
 
 type ServiceWithBeforeAfter = BaseServiceData & {
   hasBeforeAfter: true;
+  beforeAfterImgs: BeforeAfterData[]
+}
+
+type BeforeAfterData = {
   beforeImg: ImageData;
   afterImg: ImageData;
 }
 
-
 type ServiceWithoutBeforeAfter = BaseServiceData & {
   hasBeforeAfter: false;
-  beforeImg?: never;
-  afterImg?: never;
+  recentWorks: WorkItem[]
 }
 
+export type WorkItem = {
+  title: string;
+  description: string;
+  href: string;
+  image: ImageData;
+}
+
+
 export type ServiceData = ServiceWithBeforeAfter | ServiceWithoutBeforeAfter;
+
 
 
 export const SERVICE_LOCATIONS = [
@@ -74,8 +91,16 @@ export const services: ServiceData[] = [
     ],
     icon: "tabler:car",
     hasBeforeAfter: true,
-    beforeImg: xrayCar,
-    afterImg: car,
+    beforeAfterImgs: [
+      {
+        afterImg: car,
+        beforeImg: xrayCar,
+      },
+      {
+        afterImg: car,
+        beforeImg: xrayCar,
+      }
+    ],
     locations: SERVICE_LOCATIONS,
     seoContent: `
 ## Trusted Auto Repair Services in Edmonton
@@ -130,8 +155,16 @@ Don't let vehicle problems disrupt your life. Contact Bespoke Auto Repair for pr
     ],
     icon: "tabler:truck",
     hasBeforeAfter: true,
-    beforeImg: xrayCar,
-    afterImg: car,
+    beforeAfterImgs: [
+      {
+        afterImg: car,
+        beforeImg: xrayCar,
+      },
+      {
+        afterImg: car,
+        beforeImg: xrayCar,
+      }
+    ],
     locations: SERVICE_LOCATIONS,
     seoContent: `
 ## Professional Truck Repair Services in Edmonton
@@ -189,6 +222,32 @@ Your truck works hard—make sure it gets the care it deserves. Contact us for h
     ],
     icon: "tabler:brake",
     hasBeforeAfter: false,
+    recentWorks: [
+      {
+        title: "High-Performance Brake Upgrade",
+        description: "Complete overhaul of a performance sedan with slotted rotors and ceramic pads for Edmonton track enthusiasts.",
+        image: breakSystem,
+        href: "/contact",
+      },
+      {
+        title: "ABS Module Restoration",
+        description: "Advanced electronic troubleshooting to resolve recurring ABS warnings and restore safety systems.",
+        image: absModule,
+        href: "/contact",
+      },
+      {
+        title: "Hydraulic Line Replacement",
+        description: "Critical repair of corroded brake lines to prevent fluid leaks and maintain consistent pedal pressure.",
+        image: breakLine,
+        href: "/contact",
+      },
+      {
+        title: "Commercial Fleet Brake Service",
+        description: "Expedited heavy-duty brake pad replacement for local delivery vans to minimize downtime.",
+        image: vanServicing,
+        href: "/contact",
+      },
+    ],
     locations: SERVICE_LOCATIONS,
     seoContent: `
 ## Expert Brake Service in Edmonton
@@ -254,6 +313,32 @@ Brake problems only get worse with time. Schedule your brake inspection today an
     ],
     icon: "tabler:engine",
     hasBeforeAfter: false,
+    recentWorks: [
+      {
+        title: "High-Performance Brake Upgrade",
+        description: "Complete overhaul of a performance sedan with slotted rotors and ceramic pads for Edmonton track enthusiasts.",
+        image: breakSystem,
+        href: "/contact",
+      },
+      {
+        title: "ABS Module Restoration",
+        description: "Advanced electronic troubleshooting to resolve recurring ABS warnings and restore safety systems.",
+        image: absModule,
+        href: "/contact",
+      },
+      {
+        title: "Hydraulic Line Replacement",
+        description: "Critical repair of corroded brake lines to prevent fluid leaks and maintain consistent pedal pressure.",
+        image: breakLine,
+        href: "/contact",
+      },
+      {
+        title: "Commercial Fleet Brake Service",
+        description: "Expedited heavy-duty brake pad replacement for local delivery vans to minimize downtime.",
+        image: vanServicing,
+        href: "/contact",
+      },
+    ],
     locations: SERVICE_LOCATIONS,
     seoContent: `
 ## Professional Engine Diagnostics in Edmonton
@@ -311,6 +396,32 @@ Stop guessing about what's wrong with your vehicle. Schedule a diagnostic appoin
     ],
     icon: "tabler:clipboard-check",
     hasBeforeAfter: false,
+    recentWorks: [
+      {
+        title: "High-Performance Brake Upgrade",
+        description: "Complete overhaul of a performance sedan with slotted rotors and ceramic pads for Edmonton track enthusiasts.",
+        image: breakSystem,
+        href: "/contact",
+      },
+      {
+        title: "ABS Module Restoration",
+        description: "Advanced electronic troubleshooting to resolve recurring ABS warnings and restore safety systems.",
+        image: absModule,
+        href: "/contact",
+      },
+      {
+        title: "Hydraulic Line Replacement",
+        description: "Critical repair of corroded brake lines to prevent fluid leaks and maintain consistent pedal pressure.",
+        image: breakLine,
+        href: "/contact",
+      },
+      {
+        title: "Commercial Fleet Brake Service",
+        description: "Expedited heavy-duty brake pad replacement for local delivery vans to minimize downtime.",
+        image: vanServicing,
+        href: "/contact",
+      },
+    ],
     locations: SERVICE_LOCATIONS,
     seoContent: `
 ## Licensed CVIP & Out-of-Province Inspections in Edmonton
@@ -379,6 +490,32 @@ Don't delay your vehicle registration or certification. Contact Bespoke Auto Rep
     ],
     icon: "tabler:camper",
     hasBeforeAfter: false,
+    recentWorks: [
+      {
+        title: "High-Performance Brake Upgrade",
+        description: "Complete overhaul of a performance sedan with slotted rotors and ceramic pads for Edmonton track enthusiasts.",
+        image: breakSystem,
+        href: "/contact",
+      },
+      {
+        title: "ABS Module Restoration",
+        description: "Advanced electronic troubleshooting to resolve recurring ABS warnings and restore safety systems.",
+        image: absModule,
+        href: "/contact",
+      },
+      {
+        title: "Hydraulic Line Replacement",
+        description: "Critical repair of corroded brake lines to prevent fluid leaks and maintain consistent pedal pressure.",
+        image: breakLine,
+        href: "/contact",
+      },
+      {
+        title: "Commercial Fleet Brake Service",
+        description: "Expedited heavy-duty brake pad replacement for local delivery vans to minimize downtime.",
+        image: vanServicing,
+        href: "/contact",
+      },
+    ],
     locations: SERVICE_LOCATIONS,
     seoContent: `
 ## Professional Trailer & RV Repair in Edmonton
@@ -456,6 +593,32 @@ Don't let trailer problems delay your work or vacation. Contact Bespoke Auto Rep
     ],
     icon: "tabler:droplet",
     hasBeforeAfter: false,
+    recentWorks: [
+      {
+        title: "High-Performance Brake Upgrade",
+        description: "Complete overhaul of a performance sedan with slotted rotors and ceramic pads for Edmonton track enthusiasts.",
+        image: breakSystem,
+        href: "/contact",
+      },
+      {
+        title: "ABS Module Restoration",
+        description: "Advanced electronic troubleshooting to resolve recurring ABS warnings and restore safety systems.",
+        image: absModule,
+        href: "/contact",
+      },
+      {
+        title: "Hydraulic Line Replacement",
+        description: "Critical repair of corroded brake lines to prevent fluid leaks and maintain consistent pedal pressure.",
+        image: breakLine,
+        href: "/contact",
+      },
+      {
+        title: "Commercial Fleet Brake Service",
+        description: "Expedited heavy-duty brake pad replacement for local delivery vans to minimize downtime.",
+        image: vanServicing,
+        href: "/contact",
+      },
+    ],
     locations: SERVICE_LOCATIONS,
     seoContent: `
 ## Quality Oil Change Services in Edmonton

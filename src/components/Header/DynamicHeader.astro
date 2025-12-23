@@ -16,6 +16,7 @@ import { Icon } from "astro-icon/components";
 import { isCurrentPage, getDropdownId } from "@js/utils.js";
 import { Image } from "astro:assets";
 import CTALink from "@components/CTALink.astro";
+import { RollingTextLinkAlt } from "@components/services/RollingTextLink";
 
 import mainLogo from "@assets/images/main-logo.png";
 
@@ -26,7 +27,7 @@ import mainLogo from "@assets/images/main-logo.png";
 import navData from "@data/navData.json";
 ---
 
-<header id="cs-navigation" class="sticky">
+<header id="cs-navigation" class="sticky top-0">
   <div class="cs-container justify-center">
     <!--Nav Logo-->
     <a

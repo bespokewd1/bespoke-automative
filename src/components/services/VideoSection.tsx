@@ -73,9 +73,8 @@ export function VideoSection({
           {isPlaying && videoUrl && (
             <iframe
               src={videoUrl}
-              className="absolute inset-0 w-full h-full"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-              allowFullScreen
+              allowFullScreen className="absolute inset-0 w-full h-full"
             />
           )}
         </motion.div>

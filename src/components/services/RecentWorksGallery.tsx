@@ -1,38 +1,33 @@
 import { motion } from "motion/react";
 import { RollingTextLinkAlt } from "./RollingTextLink";
+import type { WorkItem } from "@data/services";
+import { cn } from "@lib/utils";
 
-interface WorkItem {
-  title: string;
-  image: string;
-  href: string;
-}
 
 interface RecentWorksGalleryProps {
   items: WorkItem[];
   title?: string;
 }
 
-function WorkCard({ item, index }: { item: WorkItem; index: number }) {
+function WorkCard({ item, index, className = "" }: { item: WorkItem; index: number, className?: string }) {
   return (
     <motion.div
       initial={{ opacity: 0, x: -30 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.1, duration: 0.5 }}
-      className="group relative aspect-4/5 overflow-hidden"
+      className={cn("group relative pointer-coarse:pb-24 aspect-4/5 overflow-hidden", className)}
     >
       <img
-        src={item.image}
+        src={item.image.src}
+        height={item.image.height}
+        width={item.image.width}
         alt={item.title}
         className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
       />
 
       {/* Overlay that slides up on hover */}
-      <motion.div
-        className="absolute inset-x-0 bottom-0 bg-linear-to-t from-black/90 via-black/70 to-transparent p-6"
-        initial={{ y: "60%", opacity: 0.5 }}
-        whileHover={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.3, ease: "easeOut" }}
+      <div className="absolute backdrop-blur-sm translate-y-[calc(100%-5rem)] pointer-coarse:translate-y-0 group-hover:translate-y-0 transition-transform ease-out duration-500 inset-x-0 bottom-0 bg-linear-to-t from-black/90 via-black/70 to-transparent px-4 py-6"
       >
         {/* Orange accent line */}
         <div className="w-12 h-1 bg-accent mb-4" />
@@ -40,13 +35,15 @@ function WorkCard({ item, index }: { item: WorkItem; index: number }) {
         <h3 className="text-white font-bold text-lg uppercase mb-4">
           {item.title}
         </h3>
+        <p className="text-white/90 font-semibold mb-4">
+          {item.description}</p>
 
         <RollingTextLinkAlt
           text="More Details"
           href={item.href}
           className="text-white"
         />
-      </motion.div>
+      </div>
     </motion.div>
   );
 }
@@ -57,7 +54,7 @@ export function RecentWorksGallery({
 }: RecentWorksGalleryProps) {
   return (
     <section className="py-16 bg-bg-muted">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 ">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
