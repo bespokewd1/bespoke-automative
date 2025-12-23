@@ -8,6 +8,7 @@ import { OtherServices } from "@components/services/OtherServices";
 import { VideoSection } from "@components/services/VideoSection";
 import { RelatedArticles } from "@components/services/RelatedArticles";
 import { SEOContent } from "@components/services/SEOContent";
+import { ServiceAreas } from "@components/services/ServiceAreas";
 import TelLink from "@components/TelLink";
 import { Image } from "astro:assets";
 
@@ -129,17 +130,19 @@ const relatedArticles = [
     videoUrl="https://www.youtube.com/embed/VTDB3mKx7jM?si=rYH-xQ1IC_J8qBtt"
   />
 
+  <ServiceAreas client:visible locations={service.locations} />
+
   {/* Service Areas Banner */}
-  <section class="bg-primary py-12 text-white">
-    <div class="container mx-auto px-4 text-center">
-      <h2 class="mb-4 text-2xl font-bold uppercase lg:text-3xl">
-        Proudly Serving the Greater Edmonton Area
-      </h2>
-      <p class="text-lg text-white/80">
-        {service.locations.join(" • ")}
-      </p>
-    </div>
-  </section>
+  <!-- <section class="bg-primary py-12 text-white"> -->
+  <!--   <div class="container mx-auto px-4 text-center"> -->
+  <!--     <h2 class="mb-4 text-2xl font-bold uppercase lg:text-3xl"> -->
+  <!--       Proudly Serving the Greater Edmonton Area -->
+  <!--     </h2> -->
+  <!--     <p class="text-lg text-white/80"> -->
+  <!--       {service.locations.join(" • ")} -->
+  <!--     </p> -->
+  <!--   </div> -->
+  <!-- </section> -->
 
   {/* Other Services */}
   <OtherServices client:visible services={otherServices} />

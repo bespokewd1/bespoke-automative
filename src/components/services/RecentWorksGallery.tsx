@@ -27,7 +27,7 @@ function WorkCard({ item, index, className = "" }: { item: WorkItem; index: numb
       />
 
       {/* Overlay that slides up on hover */}
-      <div className="absolute backdrop-blur-sm translate-y-[calc(100%-5rem)] pointer-coarse:translate-y-0 group-hover:translate-y-0 transition-transform ease-out duration-500 inset-x-0 bottom-0 bg-linear-to-t from-black/90 via-black/70 to-transparent px-4 py-6"
+      <div className="absolute translate-y-[calc(100%-5rem)] pointer-coarse:translate-y-0 group-hover:translate-y-0 transition-transform ease-out duration-500 inset-x-0 bottom-0 bg-linear-to-t from-black/90 via-black/70 to-transparent px-4 py-6"
       >
         {/* Orange accent line */}
         <div className="w-12 h-1 bg-accent mb-4" />
@@ -42,6 +42,22 @@ function WorkCard({ item, index, className = "" }: { item: WorkItem; index: numb
           text="More Details"
           href={item.href}
           className="text-white"
+        />
+        <div
+          className="pointer-events-none absolute inset-0 -z-1 h-[200%] w-full backdrop-blur-sm"
+          style={{
+            mask: "linear-gradient(to bottom, rgba(255, 255, 255) 0% 50%, transparent 50% 100%)",
+            WebkitMask:
+              "linear-gradient(to bottom, rgba(255, 255, 255) 0% 50%, transparent 50% 100%)",
+          }}
+        />
+        <div
+          className="pointer-events-none absolute inset-0 h-full -translate-y-full bg-fore-light/10"
+          style={{
+            mask: "linear-gradient(to top, black 0, black 6px, transparent 6px)",
+            WebkitMask: "linear-gradient(to top, black 0, black 6px, transparent 6px)",
+            backdropFilter: "blur(4px) brightness(120%)",
+          }}
         />
       </div>
     </motion.div>
